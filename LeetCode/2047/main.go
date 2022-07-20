@@ -36,5 +36,5 @@ func countValidWords(sentence string) int {
 }
 
 func main() {
-	fmt.Println(countValidWords("cat -and a d0g a-b. "))
+	fmt.Print(countValidWords("cat -and a d0g a-b. "))
 }
