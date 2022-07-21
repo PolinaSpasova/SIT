@@ -8,11 +8,11 @@ func isLongPressedName(name, typed string) bool {
 	}
 
 	i, j := 1, 1
-	for i < len(name) && j < len(typed) {
-		if name[i] == typed[j] {
+	for j < len(typed) {
+		if name[i] == typed[j] && i < len(name)-1 {
 			i++
 			j++
-		} else if typed[j] == name[i-1] {
+		} else if typed[j] == name[i-1] || (name[i] == typed[j] && i == len(name)-1) {
 			j++
 		} else {
 			return false
