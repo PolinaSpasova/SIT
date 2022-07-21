@@ -18,10 +18,10 @@ func isLongPressedName(name, typed string) bool {
 			return false
 		}
 	}
-	return j >= len(typed)
+	return true
 
 }
 
 func main() {
-	fmt.Println(isLongPressedName("alex", "aaleexxy"))
+	fmt.Println(isLongPressedName("alex", "aaleexxx"))
 }
