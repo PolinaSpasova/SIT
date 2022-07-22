@@ -4,6 +4,14 @@ import "fmt"
 
 func canPlaceFlowers(flowerbed []int, n int) bool {
 	possible := 0
+	if n == 0 {
+		return true
+	}
+
+	if len(flowerbed) == 1 {
+		return flowerbed[0] == 0
+	}
+
 	if flowerbed[0] == 0 && flowerbed[1] == 0 {
 		possible++
 		flowerbed[0] = 1
