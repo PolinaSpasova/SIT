@@ -117,7 +117,7 @@ func main() {
 		for rows.Next() {
 			var a obj.Author
 			rows.Scan(&a.Id, &a.Name, &a.Biography)
-			rowsB, err := db.Query("SELECT * FROM books WHERE c_id=$1", a.Id)
+			rowsB, err := db.Query("SELECT * FROM books WHERE a_id=$1", a.Id)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -158,7 +158,7 @@ func main() {
 		var auth obj.Author
 		for rows.Next() {
 			rows.Scan(&auth.Id, &auth.Name, &auth.Biography)
-			rowsB, err := db.Query("SELECT * FROM books WHERE c_id=$1", auth.Id)
+			rowsB, err := db.Query("SELECT * FROM books WHERE a_id=$1", auth.Id)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -184,13 +184,9 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		rows, err := db.Query("SELECT * FROM authors WHERE id=($1)", id)
+		err = db.QueryRow("SELECT * FROM authors WHERE id=($1)", id).Scan(&a.Id, &a.Name, &a.Biography)
 		if err != nil {
 			log.Fatal(err)
-		}
-		defer rows.Close()
-		for rows.Next() {
-			rows.Scan(&a.Id, &a.Name, &a.Biography)
 		}
 		return ctx.JSON(http.StatusOK, a)
 	})
