@@ -25,29 +25,29 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// _, err = db.Exec(`CREATE TABLE categories(
-	// 	id SERIAL PRIMARY KEY ,
-	// 	name VARCHAR ( 50 ) UNIQUE NOT NULL
-	// )`)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	_, err = db.Exec(`CREATE TABLE categories(
+		id SERIAL PRIMARY KEY ,
+		name VARCHAR ( 50 ) UNIQUE NOT NULL
+	)`)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	// _, err = db.Exec(`CREATE TABLE books(
-	// 	id SERIAL PRIMARY KEY ,
-	// 	title VARCHAR ( 50 ) UNIQUE NOT NULL,
-	// 	a_id INTEGER NOT NULL,
-	// 	c_id INTEGER NOT NULL,
-	// 	price FLOAT
+	_, err = db.Exec(`CREATE TABLE books(
+		id SERIAL PRIMARY KEY ,
+		title VARCHAR ( 50 ) UNIQUE NOT NULL,
+		a_id INTEGER NOT NULL references authors(id),
+		c_id INTEGER NOT NULL references categories(id),
+		price FLOAT
 
-	// )`)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	)`)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	// _, err = db.Exec("INSERT INTO categories(name) VALUES ($1)", "Fantasy")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	_, err = db.Exec("INSERT INTO categories(name) VALUES ($1)", "Fantasy")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 }
